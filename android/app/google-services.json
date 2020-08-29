@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "793575888059",
+    "firebase_url": "https://recipelibrary-c7fef.firebaseio.com",
+    "project_id": "recipelibrary-c7fef",
+    "storage_bucket": "recipelibrary-c7fef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793575888059:android:432b3441aca47f62b4859e",
+        "android_client_info": {
+          "package_name": "com.indistinctstudios.recipe_library"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793575888059-j4aepv5v1d3mugn4pjuqqtshuarggbtr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.indistinctstudios.recipe_library",
+            "certificate_hash": "a224c0e009ca99edd337e6ee0b67ab50f7d3275d"
+          }
+        },
+        {
+          "client_id": "793575888059-7s0do4ju1dumm8fjuvtd53qqvusmele2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvBTIOamk3ZmBBEIdoUuJsQFnn9Dg9Fso"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793575888059-7s0do4ju1dumm8fjuvtd53qqvusmele2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
