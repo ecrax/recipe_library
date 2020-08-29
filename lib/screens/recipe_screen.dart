@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_library/constants.dart';
+import 'package:recipe_library/utils/format.dart';
 import 'package:recipe_library/widgets/big_recipe_card.dart';
 
 class RecipeScreen extends StatefulWidget {
@@ -62,109 +63,6 @@ class _RecipeScreenState extends State<RecipeScreen>
     }
   }
 
-  Widget formatIngredients(Map input) {
-    var values = input.values.toList();
-    var ingredientNames = input.keys.toList();
-
-    List<Widget> finalColumn = [];
-
-    for (var i = 0; i < ingredientNames.length; i++) {
-      var textWidget = Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "${values[i]}",
-            style: TextStyle(
-              fontSize: 14,
-              color: Color(0xFFa9a9a9),
-            ),
-            textAlign: TextAlign.start,
-          ),
-          Text(
-            "${ingredientNames[i]}",
-            style: TextStyle(
-              fontSize: 14,
-              color: Color(0xFFa9a9a9),
-            ),
-            textAlign: TextAlign.start,
-          ),
-        ],
-      );
-      if (i != 0) {
-        finalColumn.add(
-          Divider(
-            thickness: 1,
-            //color: Colors.white,
-          ),
-        );
-      }
-      finalColumn.add(textWidget);
-    }
-
-    return Column(
-      children: finalColumn,
-    );
-  }
-
-  Widget formatSteps(List steps) {
-    List<Widget> finalColumn = [];
-
-    for (var i = 0; i < steps.length; i++) {
-      var textWidget = Text(
-        "${i + 1}. ${steps[i]} \n",
-        style: TextStyle(
-          fontSize: 14,
-          color: Color(0xFFa9a9a9),
-          height: 1.2,
-        ),
-        textAlign: TextAlign.start,
-      );
-
-      if (i != 0) {
-        finalColumn.add(
-          Divider(
-            thickness: 1,
-            //color: Colors.white,
-          ),
-        );
-      }
-      finalColumn.add(textWidget);
-    }
-
-    return Column(
-      children: finalColumn,
-    );
-  }
-
-  Widget formatTools(List tools) {
-    List<Widget> finalColumn = [];
-
-    for (var i = 0; i < tools.length; i++) {
-      var textWidget = Text(
-        "${tools[i]}",
-        style: TextStyle(
-          fontSize: 14,
-          color: Color(0xFFa9a9a9),
-        ),
-        textAlign: TextAlign.start,
-      );
-
-      if (i != 0) {
-        finalColumn.add(
-          Divider(
-            thickness: 1,
-            //color: Colors.white,
-          ),
-        );
-      }
-      finalColumn.add(textWidget);
-    }
-
-    return Column(
-      children: finalColumn,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -217,13 +115,13 @@ class _RecipeScreenState extends State<RecipeScreen>
                             padding: EdgeInsets.symmetric(vertical: 16),
                             child: [
                               Container(
-                                child: formatIngredients(ingredients),
+                                child: Format.formatIngredients(ingredients),
                               ),
                               Container(
-                                child: formatTools(tools),
+                                child: Format.formatTools(tools),
                               ),
                               Container(
-                                child: formatSteps(steps),
+                                child: Format.formatSteps(steps),
                               ),
                             ][_tabController.index],
                           ),
