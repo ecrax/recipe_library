@@ -77,23 +77,13 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
                   itemCount: snapshot.data.docs.length,
                   itemBuilder: (context, index) {
                     return RecipeCard(
-                      title: snapshot.data.docs[index].data()["name"],
-                      imageURL: snapshot.data.docs[index].data()["image"],
+                      data: snapshot.data.docs[index].data(),
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => RecipeScreen(
-                              title: snapshot.data.docs[index].data()["name"],
-                              imageURL:
-                                  snapshot.data.docs[index].data()["image"],
-                              time: snapshot.data.docs[index].data()["time"],
-                              steps: snapshot.data.docs[index].data()["steps"],
-                              difficulty: snapshot.data.docs[index]
-                                  .data()["difficulty"],
-                              ingredients: snapshot.data.docs[index]
-                                  .data()["ingredients"],
-                              tools: snapshot.data.docs[index].data()["tools"],
+                              data: snapshot.data.docs[index].data(),
                             ),
                           ),
                         );

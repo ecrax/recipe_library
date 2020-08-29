@@ -3,22 +3,9 @@ import 'package:recipe_library/constants.dart';
 import 'package:recipe_library/widgets/big_recipe_card.dart';
 
 class RecipeScreen extends StatefulWidget {
-  RecipeScreen(
-      {this.title,
-      this.imageURL,
-      this.time,
-      this.steps,
-      this.difficulty,
-      this.ingredients,
-      this.tools});
+  RecipeScreen({this.data});
 
-  final String title;
-  final String imageURL;
-  final String time;
-  final List<dynamic> steps;
-  final Map<dynamic, dynamic> ingredients;
-  final List<dynamic> tools;
-  final String difficulty;
+  final Map<String, dynamic> data;
 
   @override
   _RecipeScreenState createState() => _RecipeScreenState();
@@ -26,6 +13,14 @@ class RecipeScreen extends StatefulWidget {
 
 class _RecipeScreenState extends State<RecipeScreen>
     with SingleTickerProviderStateMixin {
+  String title;
+  String imageURL;
+  String time;
+  List<dynamic> steps;
+  Map<dynamic, dynamic> ingredients;
+  List<dynamic> tools;
+  String difficulty;
+
   TabController _tabController;
 
   final List<Widget> _tabs = [
@@ -51,6 +46,14 @@ class _RecipeScreenState extends State<RecipeScreen>
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(_handleTabSelection);
+
+    title = widget.data["name"];
+    imageURL = widget.data["image"];
+    time = widget.data["time"];
+    steps = widget.data["steps"];
+    ingredients = widget.data["ingredients"];
+    tools = widget.data["tools"];
+    difficulty = widget.data["difficulty"];
   }
 
   _handleTabSelection() {
@@ -166,7 +169,7 @@ class _RecipeScreenState extends State<RecipeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(title),
       ),
       body: Stack(
         children: [
@@ -177,7 +180,7 @@ class _RecipeScreenState extends State<RecipeScreen>
             ),
             child: Hero(
               tag: "RecipeImage",
-              child: Image.network(widget.imageURL),
+              child: Image.network(imageURL),
             ),
           ),
           DraggableScrollableSheet(
@@ -189,7 +192,7 @@ class _RecipeScreenState extends State<RecipeScreen>
                   controller: scrollController,
                   children: [
                     BigRecipeCard(
-                      widget: widget,
+                      data: widget.data,
                     ),
                     SizedBox(
                       height: 8,
@@ -214,13 +217,13 @@ class _RecipeScreenState extends State<RecipeScreen>
                             padding: EdgeInsets.symmetric(vertical: 16),
                             child: [
                               Container(
-                                child: formatIngredients(widget.ingredients),
+                                child: formatIngredients(ingredients),
                               ),
                               Container(
-                                child: formatTools(widget.tools),
+                                child: formatTools(tools),
                               ),
                               Container(
-                                child: formatSteps(widget.steps),
+                                child: formatSteps(steps),
                               ),
                             ][_tabController.index],
                           ),

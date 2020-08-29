@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:recipe_library/screens/recipe_screen.dart';
 import 'package:recipe_library/widgets/stats_icon.dart';
 
 class BigRecipeCard extends StatelessWidget {
-  BigRecipeCard({this.widget});
+  BigRecipeCard({this.data});
 
-  final RecipeScreen widget;
+  final Map<String, dynamic> data;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,7 @@ class BigRecipeCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    widget.title,
+                    data["name"],
                     overflow: TextOverflow.fade,
                     style: TextStyle(
                       fontWeight: FontWeight.normal,
@@ -58,19 +57,19 @@ class BigRecipeCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 StatsIcon(
-                  text: widget.time,
+                  text: data["time"],
                   icon: Icons.timer,
                 ),
                 Expanded(
                   child: StatsIcon(
-                    text: widget.steps.length != 1
-                        ? "${widget.steps.length} Steps"
-                        : "${widget.steps.length} Step",
+                    text: data["steps"].length != 1
+                        ? "${data["steps"].length} Steps"
+                        : "${data["steps"].length} Step",
                     icon: MdiIcons.chartTimelineVariant,
                   ),
                 ),
                 StatsIcon(
-                  text: widget.difficulty,
+                  text: data["difficulty"],
                   icon: MdiIcons.chefHat,
                 ),
               ],
