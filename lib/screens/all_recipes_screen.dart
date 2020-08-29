@@ -80,8 +80,6 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
                       title: snapshot.data.docs[index].data()["name"],
                       imageURL: snapshot.data.docs[index].data()["image"],
                       onTap: () {
-                        //print(snapshot.data.docs[index].data()["time"]);
-
                         Navigator.push(
                           context,
                           MaterialPageRoute(

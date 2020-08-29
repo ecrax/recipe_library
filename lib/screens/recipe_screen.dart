@@ -66,7 +66,35 @@ class _RecipeScreenState extends State<RecipeScreen>
     List<Widget> finalColumn = [];
 
     for (var i = 0; i < ingredientNames.length; i++) {
-      var textWidget = Text("${values[i]} ${ingredientNames[i]}");
+      var textWidget = Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "${values[i]}",
+            style: TextStyle(
+              fontSize: 14,
+              color: Color(0xFFa9a9a9),
+            ),
+            textAlign: TextAlign.start,
+          ),
+          Text(
+            "${ingredientNames[i]}",
+            style: TextStyle(
+              fontSize: 14,
+              color: Color(0xFFa9a9a9),
+            ),
+            textAlign: TextAlign.start,
+          ),
+        ],
+      );
+      if (i != 0) {
+        finalColumn.add(
+          Divider(
+            thickness: 1,
+            //color: Colors.white,
+          ),
+        );
+      }
       finalColumn.add(textWidget);
     }
 
@@ -79,7 +107,24 @@ class _RecipeScreenState extends State<RecipeScreen>
     List<Widget> finalColumn = [];
 
     for (var i = 0; i < steps.length; i++) {
-      var textWidget = Text("${i + 1}. ${steps[i]} \n");
+      var textWidget = Text(
+        "${i + 1}. ${steps[i]} \n",
+        style: TextStyle(
+          fontSize: 14,
+          color: Color(0xFFa9a9a9),
+          height: 1.2,
+        ),
+        textAlign: TextAlign.start,
+      );
+
+      if (i != 0) {
+        finalColumn.add(
+          Divider(
+            thickness: 1,
+            //color: Colors.white,
+          ),
+        );
+      }
       finalColumn.add(textWidget);
     }
 
@@ -92,7 +137,23 @@ class _RecipeScreenState extends State<RecipeScreen>
     List<Widget> finalColumn = [];
 
     for (var i = 0; i < tools.length; i++) {
-      var textWidget = Text("${tools[i]}");
+      var textWidget = Text(
+        "${tools[i]}",
+        style: TextStyle(
+          fontSize: 14,
+          color: Color(0xFFa9a9a9),
+        ),
+        textAlign: TextAlign.start,
+      );
+
+      if (i != 0) {
+        finalColumn.add(
+          Divider(
+            thickness: 1,
+            //color: Colors.white,
+          ),
+        );
+      }
       finalColumn.add(textWidget);
     }
 
@@ -149,7 +210,8 @@ class _RecipeScreenState extends State<RecipeScreen>
                             controller: _tabController,
                             tabs: _tabs,
                           ),
-                          Center(
+                          Container(
+                            padding: EdgeInsets.symmetric(vertical: 16),
                             child: [
                               Container(
                                 child: formatIngredients(widget.ingredients),
