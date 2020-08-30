@@ -82,7 +82,13 @@ class _RecipeScreenState extends State<RecipeScreen>
             ),
             child: Hero(
               tag: "RecipeImage$id",
-              child: Image.network(imageURL),
+              child: Container(
+                width: double.infinity,
+                child: Image.network(
+                  imageURL,
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
             ),
           ),
           DraggableScrollableSheet(
@@ -108,6 +114,7 @@ class _RecipeScreenState extends State<RecipeScreen>
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           TabBar(
                             labelColor: kPrimaryAccentColor,

@@ -33,6 +33,7 @@ dependencies:
   firebase_storage: ^4.0.0
   material_design_icons_flutter: ^4.0.5555
   image_picker: ^0.6.7+7
+  loading_overlay: ^0.2.1
   flutter_duration_picker:
     git:
       url: https://github.com/cdharris/flutter_duration_picker
