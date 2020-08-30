@@ -22,12 +22,12 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
   File _image;
 
   String uploadedImageURL;
-  String name;
+  String name = "";
   String difficulty = "Beginner";
   Duration duration = Duration(minutes: 0);
-  String toolsInput;
-  String ingredientsInput;
-  String stepsInput;
+  String toolsInput = "";
+  String ingredientsInput = "";
+  String stepsInput = "";
 
   List<String> stringToList(String string) {
     var list = string.split("+");
@@ -249,7 +249,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
               content: TextField(
                 maxLines: null,
                 decoration:
-                    InputDecoration(hintText: "e.g. Peas,500g+Carrots,3"),
+                    InputDecoration(hintText: "e.g. Peas,500g+Honey Combs,3"),
                 onChanged: (value) {
                   ingredientsInput = value;
                 },
@@ -263,7 +263,8 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
               ),
               content: TextField(
                 maxLines: null,
-                decoration: InputDecoration(hintText: "e.g. Blender+Knife"),
+                decoration:
+                    InputDecoration(hintText: "e.g. Blender+Cutting Plate"),
                 onChanged: (value) {
                   toolsInput = value;
                 },

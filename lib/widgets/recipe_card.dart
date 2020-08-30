@@ -38,12 +38,19 @@ class RecipeCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                   child: Hero(
                     tag: "RecipeImage$id",
-                    child: Image.network(
-                      imageURL,
-                      fit: BoxFit.cover,
-                      height: 139,
-                      width: 91,
-                    ),
+                    child: Stack(children: [
+                      Container(
+                        color: Color(0xFF2e2e2e),
+                        height: 139,
+                        width: 91,
+                      ),
+                      Image.network(
+                        imageURL,
+                        fit: BoxFit.cover,
+                        height: 139,
+                        width: 91,
+                      ),
+                    ]),
                   ),
                 ),
                 Expanded(
