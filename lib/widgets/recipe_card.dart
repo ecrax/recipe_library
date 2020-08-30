@@ -16,6 +16,7 @@ class RecipeCard extends StatelessWidget {
     var steps = data["steps"];
     var time = data["time"];
     var difficulty = data["difficulty"];
+    var id = data["id"].toString();
 
     return GestureDetector(
       onTap: onTap,
@@ -36,7 +37,7 @@ class RecipeCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: Hero(
-                    tag: "RecipeImage",
+                    tag: "RecipeImage$id",
                     child: Image.network(
                       imageURL,
                       fit: BoxFit.cover,

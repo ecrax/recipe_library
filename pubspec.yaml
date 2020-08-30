@@ -32,6 +32,10 @@ dependencies:
   cloud_firestore: ^0.14.0+2
   firebase_storage: ^4.0.0
   material_design_icons_flutter: ^4.0.5555
+  image_picker: ^0.6.7+7
+  flutter_duration_picker:
+    git:
+      url: https://github.com/cdharris/flutter_duration_picker
 
 dev_dependencies:
   flutter_test:

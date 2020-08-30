@@ -21,6 +21,9 @@ class _RecipeScreenState extends State<RecipeScreen>
   Map<dynamic, dynamic> ingredients;
   List<dynamic> tools;
   String difficulty;
+  String id;
+
+  int _index = 0;
 
   TabController _tabController;
 
@@ -55,6 +58,7 @@ class _RecipeScreenState extends State<RecipeScreen>
     ingredients = widget.data["ingredients"];
     tools = widget.data["tools"];
     difficulty = widget.data["difficulty"];
+    id = widget.data["id"].toString();
   }
 
   _handleTabSelection() {
@@ -77,7 +81,7 @@ class _RecipeScreenState extends State<RecipeScreen>
               bottomRight: Radius.circular(5),
             ),
             child: Hero(
-              tag: "RecipeImage",
+              tag: "RecipeImage$id",
               child: Image.network(imageURL),
             ),
           ),
@@ -121,7 +125,34 @@ class _RecipeScreenState extends State<RecipeScreen>
                                 child: Format.formatTools(tools),
                               ),
                               Container(
-                                child: Format.formatSteps(steps),
+                                child: Stepper(
+                                    steps: Format.formatSteps(steps),
+                                    currentStep: _index,
+                                    onStepTapped: (value) {
+                                      setState(() {
+                                        _index = value;
+                                      });
+                                    },
+                                    onStepCancel: () {
+                                      //print("You are clicking the cancel button.");
+                                      if (_index == 0) {
+                                        Navigator.pop(context);
+                                      } else {
+                                        setState(() {
+                                          _index -= 1;
+                                        });
+                                      }
+                                    },
+                                    onStepContinue: () async {
+                                      //print("You are clicking the continue button.");
+                                      if (_index + 1 < steps.length) {
+                                        setState(() {
+                                          _index += 1;
+                                        });
+                                      } else {
+                                        Navigator.pop(context);
+                                      }
+                                    }),
                               ),
                             ][_tabController.index],
                           ),

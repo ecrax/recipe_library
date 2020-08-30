@@ -45,34 +45,36 @@ class Format {
     );
   }
 
-  static Widget formatSteps(List steps) {
-    List<Widget> finalColumn = [];
+  static List<Step> formatSteps(List steps) {
+    List<Step> finalSteps = [];
 
     for (var i = 0; i < steps.length; i++) {
-      var textWidget = Text(
-        "${i + 1}. ${steps[i]} \n",
-        style: TextStyle(
-          fontSize: 14,
-          color: Color(0xFFa9a9a9),
-          height: 1.2,
+      // var stepWidget = Text(
+      //   "${i + 1}. ${steps[i]} \n",
+      //   style: TextStyle(
+      //     fontSize: 14,
+      //     color: Color(0xFFa9a9a9),
+      //     height: 1.2,
+      //   ),
+      //   textAlign: TextAlign.start,
+      // );
+
+      var stepWidget = Step(
+        title: Text("Step ${i + 1}"),
+        content: Text(
+          steps[i],
+          style: TextStyle(
+            fontSize: 14,
+            color: Color(0xFFa9a9a9),
+            height: 1.2,
+          ),
         ),
-        textAlign: TextAlign.start,
       );
 
-      if (i != 0) {
-        finalColumn.add(
-          Divider(
-            thickness: 1,
-            //color: Colors.white,
-          ),
-        );
-      }
-      finalColumn.add(textWidget);
+      finalSteps.add(stepWidget);
     }
 
-    return Column(
-      children: finalColumn,
-    );
+    return finalSteps;
   }
 
   static Widget formatTools(List tools) {

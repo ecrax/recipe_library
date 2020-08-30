@@ -11,7 +11,7 @@ class AllRecipesScreen extends StatefulWidget {
 class _AllRecipesScreenState extends State<AllRecipesScreen> {
   FirebaseFirestore fb = FirebaseFirestore.instance;
 
-  Future<QuerySnapshot> getImages() {
+  Future<QuerySnapshot> getRecipes() {
     return fb.collection("recipes").get();
   }
 
@@ -70,7 +70,7 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
         ),
         Expanded(
           child: FutureBuilder(
-            future: getImages(),
+            future: getRecipes(),
             builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 return ListView.builder(
@@ -94,7 +94,7 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
               } else if (snapshot.connectionState == ConnectionState.none) {
                 return Text("No data");
               }
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             },
           ),
         ),

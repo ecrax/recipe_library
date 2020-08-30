@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:recipe_library/constants.dart';
+import 'package:recipe_library/screens/add_recipe_screen.dart';
 import 'package:recipe_library/screens/all_recipes_screen.dart';
 import 'package:recipe_library/screens/favorites_screen.dart';
 
@@ -49,8 +50,16 @@ class _InitialScreenState extends State<InitialScreen> {
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
+          tooltip: "Add Recipe",
           child: Icon(Icons.add),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddRecipeScreen(),
+              ),
+            );
+          },
         ),
         backgroundColor: kBackgroundColor,
         bottomNavigationBar: BottomNavigationBar(
