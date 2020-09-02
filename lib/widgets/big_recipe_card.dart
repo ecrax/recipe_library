@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:recipe_library/config.dart';
+import 'package:recipe_library/constants.dart';
 import 'package:recipe_library/widgets/stats_icon.dart';
 
 class BigRecipeCard extends StatelessWidget {
-  BigRecipeCard({this.data});
+  BigRecipeCard({this.data, this.iconColor, this.backgroundColor});
 
   final Map<String, dynamic> data;
+  final Color iconColor;
+  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
-        color: Color(0xFF383838),
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(5),
       ),
       child: Column(
@@ -59,9 +63,15 @@ class BigRecipeCard extends StatelessWidget {
                 StatsIcon(
                   text: data["time"],
                   icon: Icons.timer,
+                  color: currentTheme.isDark()
+                      ? kPrimaryAccentColor
+                      : kLightAccentColor,
                 ),
                 Expanded(
                   child: StatsIcon(
+                    color: currentTheme.isDark()
+                        ? kPrimaryAccentColor
+                        : kLightAccentColor,
                     text: data["steps"].length != 1
                         ? "${data["steps"].length} Steps"
                         : "${data["steps"].length} Step",
@@ -71,6 +81,9 @@ class BigRecipeCard extends StatelessWidget {
                 StatsIcon(
                   text: data["difficulty"],
                   icon: MdiIcons.chefHat,
+                  color: currentTheme.isDark()
+                      ? kPrimaryAccentColor
+                      : kLightAccentColor,
                 ),
               ],
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_library/config.dart';
 import 'package:recipe_library/constants.dart';
 import 'package:recipe_library/utils/format.dart';
 import 'package:recipe_library/widgets/big_recipe_card.dart';
@@ -70,7 +71,9 @@ class _RecipeScreenState extends State<RecipeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: currentTheme.isDark() ? kBackgroundColor : kOffWhite,
       appBar: AppBar(
+        backgroundColor: currentTheme.isDark() ? null : kLightAccentColor,
         title: Text(title),
       ),
       body: Stack(
@@ -100,6 +103,8 @@ class _RecipeScreenState extends State<RecipeScreen>
                   controller: scrollController,
                   children: [
                     BigRecipeCard(
+                      backgroundColor:
+                          currentTheme.isDark() ? kBoxColor : Colors.white,
                       data: widget.data,
                     ),
                     SizedBox(
@@ -110,14 +115,18 @@ class _RecipeScreenState extends State<RecipeScreen>
                         horizontal: 16,
                       ),
                       decoration: BoxDecoration(
-                        color: Color(0xFF2e2e2e),
+                        color: currentTheme.isDark()
+                            ? kBackgroundColor //Color(0xFF2e2e2e)
+                            : kOffWhite,
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           TabBar(
-                            labelColor: kPrimaryAccentColor,
+                            labelColor: currentTheme.isDark()
+                                ? kPrimaryAccentColor
+                                : kLightAccentColor,
                             unselectedLabelColor: Color(0xFFa9a9a9),
                             controller: _tabController,
                             tabs: _tabs,
@@ -132,7 +141,11 @@ class _RecipeScreenState extends State<RecipeScreen>
                                 child: Format.formatTools(tools),
                               ),
                               Container(
-                                child: Stepper(
+                                child: Theme(
+                                  data: currentTheme.isDark()
+                                      ? kDarkTheme
+                                      : kLightTheme,
+                                  child: Stepper(
                                     steps: Format.formatSteps(steps),
                                     currentStep: _index,
                                     onStepTapped: (value) {
@@ -159,7 +172,9 @@ class _RecipeScreenState extends State<RecipeScreen>
                                       } else {
                                         Navigator.pop(context);
                                       }
-                                    }),
+                                    },
+                                  ),
+                                ),
                               ),
                             ][_tabController.index],
                           ),
