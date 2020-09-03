@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:recipe_library/config.dart';
 import 'package:recipe_library/constants.dart';
 import 'package:recipe_library/screens/recipe_screen.dart';
+import 'package:recipe_library/screens/search_screen.dart';
 import 'package:recipe_library/widgets/recipe_card.dart';
 
 class AllRecipesScreen extends StatefulWidget {
@@ -30,6 +31,15 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
   void search(String searchTerm) {
     // TODO implement search functionality
     print(searchTerm);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SearchScreen(
+          query: searchTerm,
+        ),
+      ),
+    );
   }
 
   @override
@@ -52,27 +62,27 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
-                  child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Search recipes",
-                      ),
-                      onChanged: (value) {
-                        _searchValue = value;
-                      },
-                      onSubmitted: (value) {
-                        search(value);
-                      }),
-                ),
-                GestureDetector(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 16),
-                    child: Icon(
-                      Icons.search,
-                      color: Color(0xFF979797),
-                    ),
+                    padding: EdgeInsets.only(left: 8.0),
+                    child: TextField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Search recipes",
+                        ),
+                        onChanged: (value) {
+                          _searchValue = value;
+                        },
+                        onSubmitted: (value) {
+                          search(value);
+                        }),
                   ),
-                  onTap: () {
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.search,
+                    color: Color(0xFF979797),
+                  ),
+                  onPressed: () {
                     search(_searchValue);
                   },
                 ),
@@ -104,7 +114,7 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => RecipeScreen(
-                                data: snapshot.data.docs[index].data(),
+                                data: snapshot.data.docs[index],
                               ),
                             ),
                           );
