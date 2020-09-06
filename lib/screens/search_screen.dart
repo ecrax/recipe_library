@@ -69,7 +69,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => RecipeScreen(
-                            data: snapshot.data.docs[index].data(),
+                            data: snapshot.data.docs[index],
                           ),
                         ),
                       );
